@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    &lt;!&ndash;    反射,set方法&ndash;&gt;-->
+<!--    <bean id="liu" class="com.abc.ssm.spring.Person">-->
+<!--        <property name="pid" value="1001"></property>-->
+<!--        <property name="pname" value="Liu**"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id="apple" class="com.abc.ssm.spring.Phone">-->
+<!--        <property name="brand" value="IPhone"></property>-->
+<!--        <property name="price" value="99999"></property>-->
+<!--    </bean>-->
+<!--    &lt;!&ndash;属性注入&ndash;&gt;-->
+<!--    <bean id="zhu" class="com.abc.ssm.spring.Person">-->
+<!--        <property name="pname" value="Zhu**"></property>-->
+<!--        <property name="pid" value="100001"></property>-->
+<!--    &lt;!&ndash;依赖注入&ndash;&gt;-->
+<!--        <property name="phone" ref="apple"></property>-->
+<!--    </bean>-->
+
+    <context:component-scan base-package="com.abc.ssm.spring"></context:component-scan>
+</beans>

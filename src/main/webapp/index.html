@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+
+		<meta http-equiv="pragma"   content="no-cache" />
+		<meta http-equiv="Cache-Control" content="no-cache,must-revalidate" />
+		<meta http-equiv="expires" content="Wed,26 Feb 1997 08:21:57 GMT" />
+		<title>首页</title>
+
+	</head>
+	<body>
+		<div>
+			<table>
+				<tr>
+					<td>用户名:</td>
+					<td>
+						<input type="text" id="username" value="root" />
+						<span id="existMsg"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>密  码:</td>
+					<td>
+						<input type="password" id="password"/>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="javascript:void(0)" id="loginBtn">登录</a></td>
+					<td><a href="http://localhost:8080/reg.html">注册</a></td>
+				</tr>
+			</table>
+			<p id="loginErrMsg"></p>
+		</div>
+		<script src="js/jquery.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$("#loginBtn").click(function(){
+					$.ajax({
+						url:"http://localhost:8080/login",
+						type:"post",
+						data:{
+							"username":$("#username").val(),
+							"password":$("#password").val()
+						},
+						success:function(res){
+							var result = JSON.parse(res);
+							if(result.status == 200){
+								window.location.href="http://localhost:8080/empbypage";
+								// sessionStorage.setItem("current_user",res);//只能存储字符串
+								// sessionStorage.getItem("current_user")
+								// localStorage.setItem(key,value);
+								
+							}else{
+								$("#loginErrMsg").css("color","red").text(result.msg);
+							}
+						}
+					})
+				})
+				
+				$("#username").blur(function(){
+					$.ajax({
+						url:"http://localhost:8080/userexist",
+						type:"post",
+						data:{
+							"username":$("#username").val()
+						},
+						success:function(res){
+							var result = JSON.parse(res);
+							if(result.status == 201){
+								$("#existMsg").css("color","green").text(result.msg);
+							}else{
+								$("#existMsg").css("color","red").text(result.msg);
+							}
+						}
+					})
+					// console.log("ni好")
+				})
+			})
+		</script>
+	</body>
+</html>
